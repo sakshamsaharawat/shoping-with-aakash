@@ -26,7 +26,7 @@ export const mens_kurta = [
     },
     {
         imageUrl: "https://rjbyrajat.com/cdn/shop/products/Bold-Maroon-mens-kurta-2.jpg?v=1663076069",
-        title: "Men Solid Pure Cotton Straight Kurta",
+        title: "Men Solid Pure Cotton Straight Kurta Cotton-Straight-Men-Kurta Men Solid Pure Cotton Straight Kurta Cotton-Straight-Men-Kurta",
         brand: "rjbyrajat"
     },
     {
