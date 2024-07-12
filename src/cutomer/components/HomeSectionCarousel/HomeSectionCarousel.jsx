@@ -5,7 +5,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 
-const HomeSectionCarousel = ({ data }) => {
+const HomeSectionCarousel = ({ data, sectionName }) => {
     const [activeIndex, setActiveIndex] = useState(0)
     console.log("activeindex---", activeIndex)
     const responsive = {
@@ -24,7 +24,8 @@ const HomeSectionCarousel = ({ data }) => {
     console.log("------------>", items)
     return (
 
-        <div className='px-4 lg:px-8 ' style={{ border: "2px solid black" }}>
+        <div className='px-4 lg:px-8 '>
+            <h2 className='text-2xl font-extrabold'>{sectionName}</h2>
             <div className='relative p-5'>
                 <AliceCarousel
                     items={items}
