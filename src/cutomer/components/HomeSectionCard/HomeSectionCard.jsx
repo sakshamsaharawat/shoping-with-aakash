@@ -9,8 +9,8 @@ const HomeSectionCard = ({ product }) => {
           alt="" />
       </div>
       <div className='p-4' style={{ overflow: "hidden", textOverflow: "ellipsis", height: "100px", width: "240px" }}>
-        <h3 className='text-lg font-medium text-gray-900'>{product.brand}</h3>
-        <p className='mt-2 text-sm text-gray-500' style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{product.title} </p>
+        <h3 className='text-lg font-medium text-gray-900' style={{ textTransform: "uppercase" }}>{product.brand}</h3>
+        <p className='mt-2 text-sm text-gray-500' style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", textTransform: "capitalize" }}>{product.title} </p>
       </div>
     </div>
 
