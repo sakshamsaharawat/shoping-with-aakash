@@ -98,7 +98,5 @@ export const Women_jutti = [
         imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/shoe/b/l/j/-original-imah2dbuqyehwzzz.jpeg?q=70",
         title: "Casual & Formal Stylish Comfortable Flat Bellies for Wedding/festival/Office Use Bellies For Women  (Tan , 6)",
         brand: "NatShuz "
-    },
-
-
+    }
 ]
