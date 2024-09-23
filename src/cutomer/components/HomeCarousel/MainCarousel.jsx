@@ -7,14 +7,16 @@ const MainCarousel = () => {
     const items = HomeCarouselData.map((item) => <img className='cursor-pointer' src={item.image} alt="" />)
 
     return (
-        <AliceCarousel
-            // mouseTracking
-            items={items}
-            disableButtonsControls
-            autoPlay
-            autoPlayInterval={2000}
-            infinite
-        />
+        <div className='relative z-10'>
+            <AliceCarousel
+                // mouseTracking
+                items={items}
+                disableButtonsControls
+                autoPlay
+                autoPlayInterval={2000}
+                infinite
+            />
+        </div>
     )
 };
 
