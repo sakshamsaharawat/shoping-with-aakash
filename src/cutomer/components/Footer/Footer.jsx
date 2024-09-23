@@ -1,11 +1,12 @@
 import { Button, Grid, Typography } from '@mui/material';
 import "./Footer.css"
 import React from 'react'
+import { Link } from '@mui/icons-material';
 
 
 const Footer = () => {
     return (
-        <div>
+        <div >
             <Grid className='bg-black text-white text-center t-10 cursor-pointer'
                 container
                 sx={{ bgcolor: "black", color: "white", py: 3 }}
@@ -36,6 +37,9 @@ const Footer = () => {
                     <div> <Button className='pb-5 text-capitalize' variant="h6" gutterBottom> Claim</Button></div>
                     <div> <Button className='pb-5 text-capitalize' variant="h6" gutterBottom> Privacy</Button></div>
                     <div> <Button className='pb-5 text-capitalize' variant="h6" gutterBottom> Terms</Button></div>
+                </Grid>
+                <Grid className='p-20' items xs={12}>
+                    <Typography>2023 My Comapany.All rights reserved. <br />Made with love by Me <br /> <a href="https://www.flaticon.com/" >Icons made by from www.flaticon.com </a></Typography>
                 </Grid>
             </Grid>
         </div>
