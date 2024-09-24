@@ -17,7 +17,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 import navigation from './NavigationData'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
@@ -27,21 +27,25 @@ function classNames(...classes) {
 
 export default function Navigation() {
     const [open, setOpen] = useState(false)
+    const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const openUserMenu = Boolean(anchorEl);
 
-    // Handlers for opening and closing the menu
     const handleUserClick = (event) => {
-        setAnchorEl(event.currentTarget); // Set the clicked element as anchor
+        setAnchorEl(event.currentTarget);
     };
 
     const handleCloseUserMenu = () => {
-        setAnchorEl(null); // Close the menu
+        setAnchorEl(null);
+    };
+    const handleMyOrdersClick = () => {
+        setAnchorEl(null);
+        navigate("/order");
     };
 
     const user = {
-        firstName: "Saksham", // Example user data
+        firstName: "Saksham",
         lastName: "jaat",
     };
 
@@ -301,9 +305,10 @@ export default function Navigation() {
                                         <div>
                                             <Avatar
                                                 className="text-white"
-                                                aria-controls={open ? "basic-menu" : undefined}
+                                                aria-controls={openUserMenu ? "basic-menu" : undefined}
                                                 aria-haspopup="true"
-                                                aria-expanded={open ? "true" : undefined}
+                                                aria-expanded={openUserMenu ? "true" : undefined}
+                                                onClick={handleUserClick}
                                                 sx={{
                                                     bgcolor: deepPurple[500],
                                                     color: "white",
@@ -312,15 +317,7 @@ export default function Navigation() {
                                             >
                                                 {user?.firstName?.length ? user.firstName[0].toUpperCase() : "?"}
                                             </Avatar>
-                                            {/* <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleUserClick}
-                      >
-                        Dashboard
-                      </Button> */}
+
                                             <Menu
                                                 id="basic-menu"
                                                 anchorEl={anchorEl}
@@ -330,12 +327,9 @@ export default function Navigation() {
                                                     "aria-labelledby": "basic-button",
                                                 }}
                                             >
-                                                <MenuItem >
-                                                    {true?.role === "ROLE_ADMIN"
-                                                        ? "Admin Dashboard"
-                                                        : "My Orders"}
-                                                </MenuItem>
-                                                <MenuItem>Logout</MenuItem>
+                                                <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
+                                                <MenuItem onClick={handleMyOrdersClick}>My Orders</MenuItem>
+                                                <MenuItem onClick={handleCloseUserMenu}>Logout</MenuItem>
                                             </Menu>
                                         </div>
                                     ) : (
@@ -370,12 +364,17 @@ export default function Navigation() {
                                 {/* Cart */}
                                 <div className="ml-4 flow-root lg:ml-6">
                                     <Button
+
                                         className="group -m-2 flex items-center p-2"
                                     >
-                                        <ShoppingBagIcon
-                                            className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                                            aria-hidden="true"
-                                        />
+                                        <Link to="/cart">
+                                            <ShoppingBagIcon
+                                                className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                                aria-hidden="true"
+
+                                            />
+                                        </Link>
+
                                         <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                                             {true?.totalItem}
                                         </span>
