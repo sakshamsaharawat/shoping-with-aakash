@@ -11,11 +11,11 @@ const DeliveryAddressForm = () => {
     const address = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
-      streetAddress:data.get("address"),
-      city:data.get("city"),
-      state:data.get("state"),
-      zipCode:data.get("zip"),
-      mobile:data.get("phoneNumber")
+      streetAddress: data.get("address"),
+      city: data.get("city"),
+      state: data.get("state"),
+      zipCode: data.get("zip"),
+      mobile: data.get("phoneNumber")
     }
 
     console.log("address", address)
