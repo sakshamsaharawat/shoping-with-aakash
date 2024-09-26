@@ -6,21 +6,11 @@ import { Mens_Shoes } from '../../../../Data/Mens_shoes'
 import { Mens_shirts } from '../../../../Data/Mens_shirts'
 import { Women_saree } from '../../../../Data/Women_saree'
 import { Women_jutti } from '../../../../Data/Women_jutti'
-import { Button } from '@mui/material'
 
 
 const HomePage = () => {
     return (
         <div>
-            <div className='flex space-x-10 mt-10 mb-10'>
-                <div>
-                    <Button variant="contained"><a href="/product">Product</a></Button>
-                </div>
-                <div>
-                    <Button variant="contained"><a href="/productdetail">ProductDetial</a></Button>
-                </div>
-            </div>
-
             <MainCarousel
                 infinite
             />

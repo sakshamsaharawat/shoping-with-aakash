@@ -11,12 +11,12 @@ const CustomerRouter = () => {
     return (
         <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/productdetail" element={<ProductDetail />} />
+            <Route path="/:levelOne/:levelTwo/lavelThree" element={<Product />} />
+            <Route path="/product/:productId" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<CheckOut />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/orderdetails" element={<OrderDetails />} />
+            <Route path="/account/order" element={<Order />} />
+            <Route path="/account/order/:orderId" element={<OrderDetails />} />
         </Routes>
     );
 };

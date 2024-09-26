@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./ProductCard.css"
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const openUserMenu = Boolean(anchorEl);
+
+    const navigate = useNavigate();
+    const handleOrderDetailsClick = () => {
+        setAnchorEl(null);
+        navigate("/product/:productId");
+    };
+
     return (
-        <div className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
+        <div className='productCard w-[15rem] m-3 transition-all cursor-pointer' onClick={handleOrderDetailsClick}>
             <div className='h-[20rem]'>
                 <img className='h-full w-full object-cover object-left-top' src={product.imageUrl} alt="" />
             </div>
