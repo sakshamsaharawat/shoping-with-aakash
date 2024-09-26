@@ -31,6 +31,7 @@ export default function Navigation() {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const openUserMenu = Boolean(anchorEl);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleUserClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -41,12 +42,19 @@ export default function Navigation() {
     };
     const handleMyOrdersClick = () => {
         setAnchorEl(null);
-        navigate("/order");
+        navigate("/account/order");
     };
 
     const user = {
         firstName: "Saksham",
         lastName: "jaat",
+    };
+    const closeDropdown = () => {
+        setIsDropdownOpen(false);
+    };
+    const handleCategoryClick = (category, section, item, closeDropdown) => {
+        navigate(`/${category.id}/${section.id}/${item.id}`);
+        closeDropdown()
     };
 
     return (
@@ -128,6 +136,19 @@ export default function Navigation() {
                                                             <a href={item.href} className="-m-2 block p-2 text-gray-500">
                                                                 {item.name}
                                                             </a>
+                                                            <p
+                                                                onClick={() =>
+                                                                    handleCategoryClick(
+                                                                        category,
+                                                                        section,
+                                                                        item,
+                                                                        closeDropdown()
+                                                                    )
+                                                                }
+                                                                className="cursor-pointer hover:text-gray-800"
+                                                            >
+                                                                {item.name}
+                                                            </p>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -272,6 +293,19 @@ export default function Navigation() {
                                                                                             <a href={item.href} className="hover:text-gray-800">
                                                                                                 {item.name}
                                                                                             </a>
+                                                                                            <p
+                                                                                                onClick={() =>
+                                                                                                    handleCategoryClick(
+                                                                                                        category,
+                                                                                                        section,
+                                                                                                        item,
+                                                                                                        closeDropdown()
+                                                                                                    )
+                                                                                                }
+                                                                                                className="cursor-pointer hover:text-gray-800"
+                                                                                            >
+                                                                                                {item.name}
+                                                                                            </p>
                                                                                         </li>
                                                                                     ))}
                                                                                 </ul>
@@ -355,7 +389,7 @@ export default function Navigation() {
                                 </div>
                                 <div className="flow-root">
                                     <Button>
-                                        <Link to="/product" className="-m-2 block p-2 font-medium text-gray-900">
+                                        <Link to="/:levelOne/:levelTwo/lavelThree" className="-m-2 block p-2 font-medium text-gray-900">
                                             Product
                                         </Link>
                                     </Button>

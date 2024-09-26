@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import React from 'react'
 import OrderCard from './OrderCard'
-import { Link } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
 
 const orderStatus = [
@@ -12,6 +12,7 @@ const orderStatus = [
 ]
 
 const Order = () => {
+    
     return (
         <div className='mt-10 px:5 lg:px-20'>
             <Grid container spacing={5}>
@@ -30,12 +31,10 @@ const Order = () => {
                     </div>
                 </Grid>
                 <Grid item xs={9}>
-                    <Link to="/orderdetails">
-                        <div className='space-y-5'>
+                        <div className='space-y-5' >
                             {Array.from({ length: 5 }).map((item) => <OrderCard />)}
-                        </div>
-                    </Link>
 
+                        </div>
                 </Grid>
             </Grid>
         </div>
