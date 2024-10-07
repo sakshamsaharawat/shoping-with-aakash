@@ -18,6 +18,7 @@ import navigation from './NavigationData'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import { Link, useNavigate } from 'react-router-dom'
+import AuthModel from '../../../Auth/AuthModal'
 
 
 
@@ -29,6 +30,7 @@ export default function Navigation() {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate();
 
+    const [openAuthModal, setOpenAuthModal] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
     const openUserMenu = Boolean(anchorEl);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -44,6 +46,9 @@ export default function Navigation() {
         setAnchorEl(null);
         navigate("/account/order");
     };
+    const handleSignup = () => {
+        navigate("/signUp");
+    }
 
     const user = {
         firstName: "Saksham",
@@ -56,6 +61,14 @@ export default function Navigation() {
         navigate(`/${category.id}/${section.id}/${item.id}`);
         closeDropdown()
     };
+    const handleOpen = () => {
+        setOpenAuthModal(true);
+    };
+    const handleClose = () => {
+        setOpenAuthModal(false)
+    }
+
+
 
     return (
         <div className="bg-white relative z-50">
@@ -334,8 +347,9 @@ export default function Navigation() {
                             </PopoverGroup>
 
                             <div className="ml-auto flex items-center">
+                            {/* <div className="button mr-5 " onClick={handleSignup}>SignIn</div>  */}
                                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                    {true ? (
+                                    {false ? (
                                         <div>
                                             <Avatar
                                                 className="text-white"
@@ -364,10 +378,14 @@ export default function Navigation() {
                                                 <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
                                                 <MenuItem onClick={handleMyOrdersClick}>My Orders</MenuItem>
                                                 <MenuItem onClick={handleCloseUserMenu}>Logout</MenuItem>
+                                                
+
+                                                
                                             </Menu>
                                         </div>
                                     ) : (
                                         <Button
+                                        onClick={handleOpen}
                                             className="text-sm font-medium text-gray-700 hover:text-gray-800"
                                         >
                                             Signin
@@ -420,6 +438,7 @@ export default function Navigation() {
                     </div>
                 </nav>
             </header>
+            <AuthModel handleClose={handleClose} open={openAuthModal}/>
         </div>
     )
 }
