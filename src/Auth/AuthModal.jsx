@@ -2,6 +2,7 @@ import { Box, Modal, } from '@mui/material'
 import React from 'react'
 import Register from './Register'
 import Login from './Login'
+import { useLocation } from 'react-router-dom';
 
 const style = {
   position: "absolute",
@@ -19,6 +20,7 @@ const style = {
 };
 
 const AuthModel = ({ handleClose, open }) => {
+  const location = useLocation();
   return (
     <div>
       <Modal
@@ -28,8 +30,8 @@ const AuthModel = ({ handleClose, open }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-         <Register/>
-         {/* <Login/> */}
+
+        {location.pathname === "/login" ? <Login/> : <Register/>}
         </Box>
       </Modal>
     </div>

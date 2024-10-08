@@ -1,16 +1,44 @@
-import { Button, Grid, TextField, Typography, IconButton, InputAdornment, Alert } from '@mui/material';
-import React, { useState } from 'react';
+import { Button, Grid, TextField, Typography, IconButton, InputAdornment } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser, register } from '../State/Auth/Action';
+
 
 const Register = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const jwt = localStorage.getItem("jwt");
+    const { auth } = useSelector(store => store)
+
+    useEffect(() => {
+        if (jwt) {
+            dispatch(getUser())
+        }
+    }, [jwt, auth.jwt])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            dispatch(register(formData)); 
+            console.log("User Data:", formData);
+            toast.success('Successfully Registered.');
+            navigate('/login'); 
+        }
+    };
+
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: '',
     });
+
+
+
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
 
@@ -20,10 +48,6 @@ const Register = () => {
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
-    };
-
-    const handleLogin = () => {
-        navigate("/login");
     };
 
     const handleInputChange = (e) => {
@@ -57,18 +81,13 @@ const Register = () => {
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
     };
+  
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validateForm()) {
-            alert('Form submitted successfully!');
-            console.log("User Data:", formData);
-            // You can handle form submission here
-        }
-    };
+
 
     return (
         <div>
+
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
@@ -164,7 +183,7 @@ const Register = () => {
                     <Grid item xs={12} className='flex justify-center items-center'>
                         <Typography>
                             If you have an account already?{' '}
-                            <Typography component="span" sx={{ color: 'rgb(145, 85, 253)', cursor: 'pointer' }} onClick={handleLogin}>
+                            <Typography component="span" sx={{ color: 'rgb(145, 85, 253)', cursor: 'pointer' }} onClick={() => navigate('/login')}>
                                 Login
                             </Typography>
                         </Typography>
