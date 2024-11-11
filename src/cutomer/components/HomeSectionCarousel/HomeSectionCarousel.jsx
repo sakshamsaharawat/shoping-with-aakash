@@ -14,14 +14,11 @@ const HomeSectionCarousel = ({ data, sectionName }) => {
         1024: { items: 5 }
     };
     const slidePrev = () => setActiveIndex(activeIndex - 1);
-    console.log("slideprev------", slidePrev)
     const slideNext = () => setActiveIndex(activeIndex + 1)
-    console.log("slideNext------", slideNext)
     const syncActiveIndex = ({ item }) => setActiveIndex(item)
 
 
     const items = data.slice(activeIndex, activeIndex + 20).map((item) => <HomeSectionCard product={item} />)
-    console.log("------------>", items)
     return (
 
         <div className='px-4 lg:px-8 '>
