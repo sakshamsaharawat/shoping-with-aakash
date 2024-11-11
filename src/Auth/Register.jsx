@@ -15,9 +15,16 @@ const Register = () => {
 
     useEffect(() => {
         if (jwt) {
-            dispatch(getUser())
+            dispatch(getUser(jwt))
         }
     }, [jwt, auth.jwt])
+
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,12 +37,7 @@ const Register = () => {
     };
 
 
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    });
+   
 
 
 
