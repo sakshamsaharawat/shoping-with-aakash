@@ -19,8 +19,10 @@ import { deepPurple } from '@mui/material/colors';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthModel from '../../../Auth/AuthModal';
-import { getUser } from '../../../State/Auth/Action';
+import { getUser, logout } from '../../../State/Auth/Action';
 import navigation from './NavigationData';
+import { toast } from 'react-toastify';
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -36,6 +38,7 @@ export default function Navigation() {
     const dispatch = useDispatch();
     const location = useLocation();
     const user = useSelector((state) => state.auth.user);
+    console.log("usr=================",user)
     const jwt = localStorage.getItem("jwt");
 
     const handleUserClick = (event) => {
@@ -70,7 +73,7 @@ export default function Navigation() {
 
     useEffect(() => {
         if (jwt && !user) {
-            console.log('Fetching user with JWT:', jwt); 
+            console.log('Fetching user with JWT:', jwt);
             dispatch(getUser(jwt));
         }
     }, [user, jwt, dispatch]);
@@ -85,6 +88,13 @@ export default function Navigation() {
     }, [user, location.pathname, navigate]);
 
     // console.log("User", auth.user);
+
+    const handleLogout = () => {
+        dispatch(logout())
+        toast.success('Logged out successfully!');
+        handleCloseUserMenu()
+
+    }
 
     return (
         <div className="bg-white relative z-50">
@@ -363,9 +373,8 @@ export default function Navigation() {
                             </PopoverGroup>
 
                             <div className="ml-auto flex items-center">
-                                {/* <div className="button mr-5 " onClick={handleSignup}>SignIn</div>  */}
                                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                    {user ? (
+                                    {user?.firstName ? (
                                         <div>
                                             <Avatar
                                                 className="text-white"
@@ -379,7 +388,7 @@ export default function Navigation() {
                                                     cursor: "pointer",
                                                 }}
                                             >
-                                                {user.firstName ? user.firstName[0].toUpperCase() : "?"}
+                                                {user?.firstName ? user.firstName[0].toUpperCase() : "?"}
                                             </Avatar>
 
 
@@ -395,7 +404,7 @@ export default function Navigation() {
                                             >
                                                 <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
                                                 <MenuItem onClick={handleMyOrdersClick}>My Orders</MenuItem>
-                                                <MenuItem onClick={handleCloseUserMenu}>Logout</MenuItem>
+                                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
 
 
                                             </Menu>

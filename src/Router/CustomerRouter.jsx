@@ -20,7 +20,7 @@ const CustomerRouter = () => {
             <Route path="/account/order/:orderId" element={<OrderDetails />} />
             <Route path="/signUp" element={<HomePage />} />
             <Route path="/authmodal" element={<AuthModel />} />
-            <Route path="/login" element={<HomePage/>} />
+            <Route path="/login-page" element={<HomePage/>} />
 
 
 

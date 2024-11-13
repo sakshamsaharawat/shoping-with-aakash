@@ -6,12 +6,12 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, register } from '../State/Auth/Action';
 
-
 const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const jwt = localStorage.getItem("jwt");
     const { auth } = useSelector(store => store)
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         if (jwt) {
@@ -29,17 +29,13 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            dispatch(register(formData)); 
+            dispatch(register(formData));
             console.log("User Data:", formData);
             toast.success('Successfully Registered.');
-            navigate('/login'); 
+            // Optionally navigate to login page after registration success
+            // navigate('/login');
         }
     };
-
-
-   
-
-
 
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
@@ -83,13 +79,13 @@ const Register = () => {
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
     };
-  
 
-
+    const handleCloseMenu = () => {
+        setMenuOpen(false);
+    };
 
     return (
         <div>
-
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
@@ -185,7 +181,14 @@ const Register = () => {
                     <Grid item xs={12} className='flex justify-center items-center'>
                         <Typography>
                             If you have an account already?{' '}
-                            <Typography component="span" sx={{ color: 'rgb(145, 85, 253)', cursor: 'pointer' }} onClick={() => navigate('/login')}>
+                            <Typography
+                                component="span"
+                                sx={{ color: 'rgb(145, 85, 253)', cursor: 'pointer' }}
+                                onClick={() => {
+                                    handleCloseMenu();
+                                    navigate("/login-page"); 
+                                }}
+                            >
                                 Login
                             </Typography>
                         </Typography>
@@ -197,4 +200,3 @@ const Register = () => {
 };
 
 export default Register;
-

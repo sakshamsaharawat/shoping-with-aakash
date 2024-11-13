@@ -15,7 +15,7 @@ export const register = (userData) => async (dispatch) => {
         if(user.jwt){
             localStorage.setItem("jwt",user.jwt)
         }
-        dispatch(registerSuccess(user.jwt))
+        dispatch(registerSuccess({firstName: "Aakash"}, user.jwt))
     } catch (error) {
         dispatch(registerFailure(error.message));
         console.error('Registration error:', error.message);
@@ -32,24 +32,23 @@ export const login = (userData) => async (dispatch) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
         const user = response.data;
-        console.log("Login API response:", user); // Debugging line
+        // console.log("Login API response:", user); // Debugging line
         if (user.jwt) {
             localStorage.setItem("jwt", user.jwt);
             dispatch(loginSuccess(user.user, user.jwt));
             dispatch(getUser(user.jwt));
         }
     } catch (error) {
-        console.error("Login error:", error.message); // Debugging line
+        // console.error("Login error:", error.message); // Debugging line
         dispatch(loginFailure(error.message));
     }
 };
 
 const getUserRequest = () => ({ type: GET_USER_REQUEST });
-const getUserSuccess = () => ({ type: GET_USER_SUCCESS });
+const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, payload: user });
 const getUserFailure = () => ({ type: GET_USER_FAILURE });
 
 export const getUser = (jwt) => async (dispatch) => {
-    console.log("jwt",jwt)
     dispatch(getUserRequest());
     try {
         const response = await axios.get(`${API_BASE_URL}/user/userProfile`, {
@@ -58,10 +57,16 @@ export const getUser = (jwt) => async (dispatch) => {
             }
         });
         const user = response.data;
-        console.log("getUser API response:", user); // Debugging line
+        // console.log("getUser API response:", user); // Debugging line
         dispatch(getUserSuccess(user));
     } catch (error) {
-        console.error("getUser error:", error.message); // Debugging line
+        // console.error("getUser error:", error.message); // Debugging line
         dispatch(getUserFailure(error.message));
     }
 };
+
+export const logout = () => (dispatch) => {
+    dispatch({type:LOGOUT, payload: null})
+    localStorage.clear();
+
+}
