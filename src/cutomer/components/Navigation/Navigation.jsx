@@ -38,7 +38,6 @@ export default function Navigation() {
     const dispatch = useDispatch();
     const location = useLocation();
     const user = useSelector((state) => state.auth.user);
-    console.log("usr=================",user)
     const jwt = localStorage.getItem("jwt");
 
     const handleUserClick = (event) => {

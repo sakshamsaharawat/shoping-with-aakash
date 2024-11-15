@@ -27,7 +27,7 @@ const loginSuccess = (user,jwt) => ({ type: LOGIN_SUCCESS, payload: {user, jwt} 
 const loginFailure = (error) => ({ type: LOGIN_FAILURE, payload: error });
 
 export const login = (userData) => async (dispatch) => {
-    console.log("login user data", userData)
+    // console.log("login user data", userData)
     dispatch(loginRequest());
     try {
         const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
