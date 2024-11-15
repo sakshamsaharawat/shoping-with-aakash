@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Dialog,
     DialogBackdrop,
@@ -18,7 +18,9 @@ import { mens_kurta } from '../../../Data/Mens_kurta'
 import ProductCard from './ProductCard'
 import { filters, singleFilter, sortOptions } from './FilterData'
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProducts } from '../../../State/Product/Action'
 
 
 
@@ -30,6 +32,20 @@ export default function Product() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
+    const param = useParams()
+    const dispatch = useDispatch()
+    const {product} = useSelector(store=>store)
+
+    const decodedQueryString = decodeURIComponent(location.search);
+    const searchParams = new URLSearchParams(decodedQueryString);
+
+    const colorValue = searchParams.get("color")
+    const sizeValue = searchParams.get("size")
+    const priceValue = searchParams.get("price")
+    const disccount = searchParams.get("discount")
+    const sortValue = searchParams.get("sort")
+    const pageNumber = searchParams.get("page") || 1
+    const stock = searchParams.get("stock")
 
 
 
@@ -59,6 +75,33 @@ export default function Product() {
         const query = searchParams.toString();
         navigate({ search: `?${query}` });
     };
+
+    useEffect(() => {
+        const [minPrice, maxPrice] = priceValue === null ? [0, 0] : priceValue.split("-").map(Number)
+        const data = {
+            Category: param.levelThree,
+            colors: colorValue || [],
+            sizes: sizeValue || [],
+            minPrice,
+            maxPrice,
+            minDiscount: disccount || 0,
+            sort:sortValue || "price_low",
+            pageNumber: pageNumber -1,
+            pageSize:10,
+            stock: stock
+        }
+
+        dispatch(findProducts(data))
+    }, [param.levelThree,
+        colorValue,
+        sizeValue,
+        priceValue,
+        disccount,
+        sortValue,
+        pageNumber,
+        stock
+
+    ])
 
     return (
         <div className="bg-white">
@@ -263,7 +306,7 @@ export default function Product() {
                             {/* Product grid */}
                             <div className="lg:col-span-3 w-full">
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                    {mens_kurta.map((item) => <ProductCard product={item} />)}
+                                    {product.products && product.products?.map((item) => <ProductCard product={item} />)}
                                 </div>
                             </div>
                         </div>
