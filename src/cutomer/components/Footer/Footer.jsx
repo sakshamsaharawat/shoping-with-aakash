@@ -38,8 +38,12 @@ const Footer = () => {
                     <div> <Button className='pb-5 text-capitalize' variant="h6" gutterBottom> Privacy</Button></div>
                     <div> <Button className='pb-5 text-capitalize' variant="h6" gutterBottom> Terms</Button></div>
                 </Grid>
-                <Grid className='p-20' items xs={12}>
-                    <Typography>2023 My Comapany.All rights reserved. <br />Made with love by Me <br /> <a href="https://www.flaticon.com/" >Icons made by from www.flaticon.com </a></Typography>
+                <Grid className='p-20' item xs={12}>
+                    <Typography>
+                        2023 My Company. All rights reserved. <br />
+                        Made with love by Me <br />
+                        <a href="https://www.flaticon.com/">Icons made by from www.flaticon.com</a>
+                    </Typography>
                 </Grid>
             </Grid>
         </div>

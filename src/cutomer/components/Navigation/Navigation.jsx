@@ -436,7 +436,7 @@ export default function Navigation() {
                                 </div>
                                 <div className="flow-root">
                                     <Button>
-                                        <Link to="/:levelOne/:levelTwo/lavelThree" className="-m-2 block p-2 font-medium text-gray-900">
+                                        <Link to="/:levelOne/:levelTwo/levelThree" className="-m-2 block p-2 font-medium text-gray-900">
                                             Product
                                         </Link>
                                     </Button>
