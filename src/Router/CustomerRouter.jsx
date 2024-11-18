@@ -12,7 +12,7 @@ const CustomerRouter = () => {
     return (
         <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route path="/:levelOne/:levelTwo/lavelThree" element={<Product />} />
+            <Route path="/:levelOne/:levelTwo/levelThree" element={<Product />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<CheckOut />} />
