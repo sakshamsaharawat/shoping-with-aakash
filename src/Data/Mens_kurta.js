@@ -79,7 +79,7 @@ export const mens_kurta = [
         ]
     },
     {
-        imageUrl: "https://mahezon.in/cdn/shop/files/IMG-20231006-WA0286_9f0cd776-804d-4759-b9e6-c30ac1905bb0_800x1026_crop_center@2x.jpg?v=1707551503",
+        imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/i/w/k/s-kurta-olive-almora-original-imagxnf3f6nzpb45.jpeg?q=70",
         title: "Men Solid Pure Cotton Straight Kurta",
         brand: "mahezon",
         price: "2399",
