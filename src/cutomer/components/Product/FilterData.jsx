@@ -9,11 +9,11 @@ export const filters = [
         name: 'Color',
         options: [
             { value: 'white', label: 'White', checked: false },
-            { value: 'beige', label: 'Beige', checked: false },
+            { value: 'red', label: 'Red', checked: false },
             { value: 'blue', label: 'Blue', checked: true },
-            { value: 'brown', label: 'Brown', checked: false },
+            { value: 'yellow', label: 'Yellow', checked: false },
             { value: 'green', label: 'Green', checked: false },
-            { value: 'purple', label: 'Purple', checked: false },
+            { value: 'black', label: 'Black', checked: false },
         ],
     },
 
@@ -21,9 +21,9 @@ export const filters = [
         id: 'size',
         name: 'Size',
         options: [
+            { value: 'm', label: 'M', checked: false },
+            { value: 'l', label: 'L', checked: false },
             { value: '2l', label: '2L', checked: false },
-            { value: '6l', label: '6L', checked: false },
-            { value: '12l', label: '12L', checked: false },
             { value: '18l', label: '18L', checked: false },
             { value: '20l', label: '20L', checked: false },
             { value: '40l', label: '40L', checked: true },

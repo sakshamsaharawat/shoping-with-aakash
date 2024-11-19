@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
     const navigate = useNavigate();
     const handleOrderDetailsClick = () => {
         setAnchorEl(null);
-        navigate("/product/:productId");
+        navigate(`/product/${product?._id}`);
     };
 
     return (

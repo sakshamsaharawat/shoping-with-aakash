@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Radio, RadioGroup } from '@headlessui/react'
 import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
 import { mens_kurta } from '../../../Data/Mens_kurta'
 import HomeSectionCard from '../HomeSectionCard/HomeSectionCard'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProductById } from '../../../State/Product/Action'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -62,13 +64,25 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-    const [selectedColor, setSelectedColor] = useState(product.colors[0])
-    const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+    const [selectedSize, setSelectedSize] = useState("")
     const navigate = useNavigate()
+    const params = useParams()
+    const dispatch = useDispatch()
+    const {products} = useSelector(store=> store)
 
+    console.log("products---",products)
+    // console.log("product---",product)
+
+
+console.log("params-------",params)
     const handleAddToCart = () => {
         navigate("/cart")
     }
+
+    useEffect(()=>{
+        dispatch(findProductById(params.productId))
+console.log("productId-on-detailspage",params.productId)
+    },[params.productId])
 
     return (
         <div className="bg-white lg:px-20">
@@ -95,8 +109,8 @@ export default function Example() {
                             </li>
                         ))}
                         <li className="text-sm">
-                            <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                                {product.name}
+                            <a href={products?.product?.imageUrl} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
+                                {products?.product?.title}
                             </a>
                         </li>
                     </ol>
@@ -108,20 +122,20 @@ export default function Example() {
                     <div className="flex flex-col items-center">
                         <div className=" overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
                             <img
-                                src={product.images[0].src}
-                                alt={product.images[0].alt}
+                                src={products?.product?.imageUrl}
+                                alt={products.images}
                                 className="h-full w-full object-cover object-center"
                             />
                         </div>
                         <div className="flex flex-wrap space-x-5 justify-center ">
-                            {product.images.map((item) =>
+                            
                                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem]">
                                     <img
-                                        src={item.src}
-                                        alt={item.alt}
+                                        src={products?.product?.imageUrl}
+                                        alt={products?.product?.title}
                                         className="h-full w-full object-cover object-center"
                                     />
-                                </div>)}
+                                </div>
                         </div>
                     </div>
                     {/* Product info */}
@@ -166,20 +180,20 @@ export default function Example() {
                                             onChange={setSelectedSize}
                                             className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                                         >
-                                            {product.sizes.map((size) => (
+                                            {products?.product?.sizes?.map((size) => (
                                                 <Radio
                                                     key={size.name}
                                                     value={size}
-                                                    disabled={!size.inStock}
+                                                    disabled={!size.quantity}
                                                     className={classNames(
-                                                        size.inStock
+                                                        size.quantity
                                                             ? 'cursor-pointer bg-white text-gray-900 shadow-sm'
                                                             : 'cursor-not-allowed bg-gray-50 text-gray-200',
                                                         'group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none data-[focus]:ring-2 data-[focus]:ring-indigo-500 sm:flex-1 sm:py-6',
                                                     )}
                                                 >
                                                     <span>{size.name}</span>
-                                                    {size.inStock ? (
+                                                    {size.quantity ? (
                                                         <span
                                                             aria-hidden="true"
                                                             className="pointer-events-none absolute -inset-px rounded-md border-2 border-transparent group-data-[focus]:border group-data-[checked]:border-indigo-500"
@@ -223,7 +237,7 @@ export default function Example() {
                                 <h3 className="sr-only">Description</h3>
 
                                 <div className="space-y-6">
-                                    <p className="text-base text-gray-900">{product.description}</p>
+                                    <p className="text-base text-gray-900">{products?.product?.description}</p>
                                 </div>
                             </div>
 
