@@ -13,11 +13,11 @@ export const cartReducer = (state = initialState, action) => {
             return { ...state, loading: true, error: null }
 
         case ADD_ITEM_TO_CART_SUCCESS:
-            return { ...state, cartItems:[...state.cartItems, action.payload.cartItems], loading: false}
+            return { ...state, cartItems: [...state.cartItems, action.payload.cartItem], loading: false }
         case ADD_ITEM_TO_CART_FAILURE:
             return { ...state, loading: false, error: action.payload }
         case GET_CART_REQUEST:
-            return { ...state, loading: true, error: null}
+            return { ...state, loading: true, error: null }
         case GET_CART_SUCCESS:
             return { ...state, cartItems: action.payload.cartItems, cart: action.payload, loading: false };
         case GET_CART_FAILURE:

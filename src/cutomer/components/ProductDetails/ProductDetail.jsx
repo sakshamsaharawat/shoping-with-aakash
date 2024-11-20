@@ -7,6 +7,7 @@ import HomeSectionCard from '../HomeSectionCard/HomeSectionCard'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProductById } from '../../../State/Product/Action'
+import { addItemToCart } from '../../../State/Cart/Action'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -68,21 +69,18 @@ export default function Example() {
     const navigate = useNavigate()
     const params = useParams()
     const dispatch = useDispatch()
-    const {products} = useSelector(store=> store)
-
-    console.log("products---",products)
-    // console.log("product---",product)
+    const { products } = useSelector(store => store)
 
 
-console.log("params-------",params)
     const handleAddToCart = () => {
+        const data = { productId: params.productId, size: selectedSize.name }
+        dispatch(addItemToCart(data))
         navigate("/cart")
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(findProductById(params.productId))
-console.log("productId-on-detailspage",params.productId)
-    },[params.productId])
+    }, [params.productId])
 
     return (
         <div className="bg-white lg:px-20">
@@ -128,23 +126,23 @@ console.log("productId-on-detailspage",params.productId)
                             />
                         </div>
                         <div className="flex flex-wrap space-x-5 justify-center ">
-                            
-                                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem]">
-                                    <img
-                                        src={products?.product?.imageUrl}
-                                        alt={products?.product?.title}
-                                        className="h-full w-full object-cover object-center"
-                                    />
-                                </div>
+
+                            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem]">
+                                <img
+                                    src={products?.product?.imageUrl}
+                                    alt={products?.product?.title}
+                                    className="h-full w-full object-cover object-center"
+                                />
+                            </div>
                         </div>
                     </div>
                     {/* Product info */}
                     <div className="lg:col-span-1 maxt-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7x1 lg:px-8
                     lg:pb-24">
                         <div className="lg:col-span-2" >
-                            <h1 className='text-lg lg:text-xl font-semibold text-gray-900'>Puma</h1>
+                            <h1 className='text-lg lg:text-xl font-semibold text-gray-900'>{products?.product?.brand}</h1>
                             <h1 className="text-lg lg:text-xl text-gray-900 opacity-60 pt-1">
-                                Casual Puff Sleeves Solid Women white Top
+                                {products?.product?.title}
                             </h1>
                         </div>
 
@@ -152,9 +150,9 @@ console.log("productId-on-detailspage",params.productId)
                         <div className="mt-4 lg:row-span-3 lg:mt-0" >
                             <h2 className="sr-only">Product information</h2>
                             <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
-                                <p className='font-semibold'> ₹199</p>
-                                <p className='text-gray-900 opacity-50 line-through'> ₹211</p>
-                                <p className='font-semibold text-green-600'>5% Off</p>
+                                <p className='font-semibold'> ₹{products?.product?.price}</p>
+                                <p className='text-gray-900 opacity-50 line-through'> ₹{products?.product?.discountedPrice}</p>
+                                <p className='font-semibold text-green-600'>{products?.product?.discountedPercent}% Off</p>
 
                             </div>
 
