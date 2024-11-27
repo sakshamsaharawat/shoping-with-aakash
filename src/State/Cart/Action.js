@@ -22,11 +22,11 @@ export const addItemToCart = (reqData) => async (dispatch) => {
     }
 }
 
-export const removeCartItem = (reqData) => async (dispatch) => {
+export const removeCartItem = (cartItemId) => async (dispatch) => {
     dispatch({ type: REMOVE_CART_ITEM_REQUEST })
     try {
-        const { data } = await api.delete(`/cartitem/:id/${reqData.cartItemId}`)
-        dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: data })
+        const { data } = await api.delete(`/cartitem/${cartItemId}`)
+        dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: cartItemId })
     } catch (error) {
         dispatch({ type: REMOVE_CART_ITEM_FAILURE, payload: error.message })
     }
@@ -35,7 +35,7 @@ export const removeCartItem = (reqData) => async (dispatch) => {
 export const updateCartItem = (reqData) => async (dispatch) => {
     dispatch({ type: UPDATE_CART_ITEM_REQUEST })
     try {
-        const { data } = await api.put(`/cartitem/:id/${reqData.cartItemId}`, reqData.data)
+        const { data } = await api.put(`/cartitem/${reqData.cartItemId}`, reqData.data)
         dispatch({ type: UPDATE_CART_ITEM_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: UPDATE_CART_ITEM_FAILURE, payload: error.message })

@@ -7,6 +7,7 @@ import CheckOut from '../cutomer/components/CheckOut/CheckOut';
 import Order from '../cutomer/components/Order/Order';
 import OrderDetails from '../cutomer/components/Order/OrderDetails';
 import AuthModel from '../Auth/AuthModal';
+import OrderSummary from '../cutomer/components/CheckOut/OrderSummary';
 
 const CustomerRouter = () => {
     return (
@@ -21,6 +22,8 @@ const CustomerRouter = () => {
             <Route path="/signUp" element={<HomePage />} />
             <Route path="/authmodal" element={<AuthModel />} />
             <Route path="/login-page" element={<HomePage/>} />
+            {/* <Route path="/order-summary" element={<OrderSummary/>} /> */}
+
 
 
 

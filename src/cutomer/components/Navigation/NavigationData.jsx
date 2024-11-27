@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom"
+
+
+
+
 const navigation = {
+
     categories: [
         {
             id: 'women',
@@ -22,6 +28,7 @@ const navigation = {
                     id: 'clothing',
                     name: 'Clothing',
                     items: [
+
                         { name: 'Tops', href: '#' },
                         { name: 'Dresses', href: '#' },
                         { name: 'Pants', href: '#' },
@@ -81,7 +88,7 @@ const navigation = {
                     id: 'clothing',
                     name: 'Clothing',
                     items: [
-                        { name: 'Tops', href: '#' },
+                        { name: 'Mens Kurta', href:('/:levelOne/:levelTwo/levelThree') },
                         { name: 'Pants', href: '#' },
                         { name: 'Sweaters', href: '#' },
                         { name: 'T-Shirts', href: '#' },
