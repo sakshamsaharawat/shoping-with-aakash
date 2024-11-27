@@ -16,7 +16,7 @@ const handleCheckOut = ()=>{
 
 useEffect(()=>{
   dispatch(getCart())
-},[])
+},[cart.updateCartItem,cart.deleteCartItem])
 
   return (
     <div>

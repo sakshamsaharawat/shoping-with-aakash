@@ -38,6 +38,7 @@ export default function Product() {
 
     const decodedQueryString = decodeURIComponent(location.search);
     const searchParams = new URLSearchParams(decodedQueryString);
+    console.log("searchParams",searchParams)
 
     const colorValue = searchParams.get("color")
     const sizeValue = searchParams.get("sizes")
