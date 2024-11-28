@@ -2,24 +2,23 @@ import { api } from '../../config/apiConfig';
 import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_ORDER_BY_ID_FAILURE, GET_ORDER_BY_ID_REQUEST, GET_ORDER_BY_ID_SUCCESS } from './ActionType';
 
 export const creatOrder = (reqData) => async (dispatch) => {
-    console.log("reqData-order", reqData)
     dispatch({ type: CREATE_ORDER_REQUEST })
     try {
-        const { data } = api.post(`/order/`, reqData.address)
+        const { data } = await api.post(`/order/`, reqData.address)
         if (data._id) {
-            reqData.navigate({ search: `step=3&order_id${data.id}` })
+            reqData.navigate({ search: `step=3&order_id=${data._id}` })
         }
-        console.log("created order - ", data);
         dispatch({ type: CREATE_ORDER_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message })
     }
 }
 
-export const getOrderById = (orderId) => (dispatch) => {
+export const getOrderById = (orderId) => async (dispatch) => {
+
     dispatch({ type: GET_ORDER_BY_ID_REQUEST })
     try {
-        const { data } = api.get(`/order/:id/${orderId}`)             // (`/orders/${orderId}`)
+        const { data } = await api.post(`/order/${orderId}`)
         dispatch({ type: GET_ORDER_BY_ID_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: GET_ORDER_BY_ID_FAILURE, payload: error.message })
