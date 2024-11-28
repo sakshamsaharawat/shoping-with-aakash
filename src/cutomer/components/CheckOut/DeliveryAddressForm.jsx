@@ -9,7 +9,6 @@ const DeliveryAddressForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleSubmit = (e) => {
-
     // page is not refrece by using    e.preventDefault();
     e.preventDefault();
     const data = new FormData(e.currentTarget);
