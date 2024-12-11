@@ -11,6 +11,7 @@ const steps = [
 ]
 
 const OrderTracking = ({ activeStep }) => {
+  console.log("activeStep---OrderTracking",activeStep)
   return (
     <div className='w-full'>
       <Stepper activeStep={activeStep} alternativeLabel>
