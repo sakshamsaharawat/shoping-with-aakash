@@ -15,12 +15,12 @@ export const creatOrder = (reqData) => async (dispatch) => {
 }
 
 export const getOrderById = (orderId) => async (dispatch) => {
-
-    dispatch({ type: GET_ORDER_BY_ID_REQUEST })
+    dispatch({ type: GET_ORDER_BY_ID_REQUEST });
     try {
-        const { data } = await api.post(`/order/${orderId}`)
-        dispatch({ type: GET_ORDER_BY_ID_SUCCESS, payload: data })
+        const { data } = await api.post(`/order/${orderId}`);
+        dispatch({ type: GET_ORDER_BY_ID_SUCCESS, payload: data });
     } catch (error) {
-        dispatch({ type: GET_ORDER_BY_ID_FAILURE, payload: error.message })
+        console.error("Error fetching order:", error);
+        dispatch({ type: GET_ORDER_BY_ID_FAILURE, payload: error.message });
     }
-}
+};
