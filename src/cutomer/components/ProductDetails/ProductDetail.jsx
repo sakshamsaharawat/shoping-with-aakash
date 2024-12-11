@@ -150,8 +150,8 @@ export default function Example() {
                         <div className="mt-4 lg:row-span-3 lg:mt-0" >
                             <h2 className="sr-only">Product information</h2>
                             <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
-                                <p className='font-semibold'> ₹{products?.product?.price}</p>
-                                <p className='text-gray-900 opacity-50 line-through'> ₹{products?.product?.discountedPrice}</p>
+                                <p className='font-semibold'> ₹{products?.product?.discountedPrice}</p>
+                                <p className='text-gray-900 opacity-50 line-through'> ₹{products?.product?.price}</p>
                                 <p className='font-semibold text-green-600'>{products?.product?.discountedPercent}% Off</p>
 
                             </div>

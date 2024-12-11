@@ -17,7 +17,8 @@ const handleCheckOut = ()=>{
 useEffect(()=>{
   dispatch(getCart())
 },[cart.updateCartItem,cart.deleteCartItem])
-
+console.log("CArt--0000000000",cart?.cart?.totalPrice)
+console.log("CArt---data",cart)
   return (
     <div>
       <div className='lg:grid grid-cols-3 lg:px-16 relative mt-5'>
@@ -41,7 +42,6 @@ useEffect(()=>{
                 <span>Delivery Charges</span>
                 <span className='text-green-600'>Free</span>
               </div>
-
               <div className='flex justify-between font-semibold pt-3 text-black border-t-2'>
                 <span>Total Amount</span>
                 <span className='text-green-600'>₹{cart?.cart?.totalDiscountedPrice}</span>
@@ -49,11 +49,7 @@ useEffect(()=>{
               <div className=' flex items-center p-2' style={{ alignItems: "center", justifyContent: "center" }}>
                 <Button className='py-1 px-28 rounded-sm w-full' style={{ backgroundColor: "RGB(145 85 253)", color: "white", }} onClick={handleCheckOut}> CHECK OUT</Button>
               </div>
-
-
             </div>
-
-
           </div>
         </div>
       </div>

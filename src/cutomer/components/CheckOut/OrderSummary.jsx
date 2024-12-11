@@ -5,21 +5,24 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderById } from '../../../State/Order/Action'
+import { createPayment } from '../../../State/Payment/Action'
 
 const OrderSummary = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const { order } = useSelector(store => store)
-    console.log("order---------store",order)
     const searchParams = new URLSearchParams(location.search);
     const orderId = searchParams.get("order_id")
 
 
     useEffect(() => {
         dispatch(getOrderById(orderId))
-        console.log("orderId------------", orderId)
 
     }, [orderId])
+
+    const handleCheckout =()=>{
+        dispatch(createPayment(orderId))
+    }
     return (
         <div>
             <div className='border rounded-s-md shadow-lg p-5'>
@@ -53,13 +56,9 @@ const OrderSummary = () => {
                                     <span className='text-green-600'>₹{order?.order?.totalDiscountedPrice}</span>
                                 </div>
                                 <div className=' flex items-center p-2' style={{ alignItems: "center", justifyContent: "center" }}>
-                                    <Link to="/" className='w-full'><Button className='py-1 px-28 rounded-sm w-full' style={{ backgroundColor: "RGB(145 85 253)", color: "white", }}> PAYMENT</Button></Link>
+                                    <Link to="" className='w-full'><Button className='py-1 px-28 rounded-sm w-full' style={{ backgroundColor: "RGB(145 85 253)", color: "white", }} onClick={handleCheckout}> CHECKOUT </Button></Link>
                                 </div>
-
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>

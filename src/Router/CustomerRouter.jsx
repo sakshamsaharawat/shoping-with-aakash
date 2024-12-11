@@ -7,7 +7,7 @@ import CheckOut from '../cutomer/components/CheckOut/CheckOut';
 import Order from '../cutomer/components/Order/Order';
 import OrderDetails from '../cutomer/components/Order/OrderDetails';
 import AuthModel from '../Auth/AuthModal';
-import OrderSummary from '../cutomer/components/CheckOut/OrderSummary';
+import PaymentSuccess from '../cutomer/components/Payment/PaymentSuccess';
 
 const CustomerRouter = () => {
     return (
@@ -21,12 +21,9 @@ const CustomerRouter = () => {
             <Route path="/account/order/:orderId" element={<OrderDetails />} />
             <Route path="/signUp" element={<HomePage />} />
             <Route path="/authmodal" element={<AuthModel />} />
-            <Route path="/login-page" element={<HomePage/>} />
-            {/* <Route path="/order-summary" element={<OrderSummary/>} /> */}
-
-
-
-
+            <Route path="/login-page" element={<HomePage />} />
+            <Route path='/payment/:orderId' exact element={<PaymentSuccess />} />
+            {/* <Route path='/' exact element={<PaymentSuccess />} /> */}
         </Routes>
     );
 };
