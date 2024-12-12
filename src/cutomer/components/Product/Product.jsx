@@ -38,7 +38,7 @@ export default function Product() {
 
     const decodedQueryString = decodeURIComponent(location.search);
     const searchParams = new URLSearchParams(decodedQueryString);
-    console.log("searchParams",searchParams)
+    console.log("searchParams", searchParams)
 
     const colorValue = searchParams.get("color")
     const sizeValue = searchParams.get("sizes")
@@ -47,16 +47,16 @@ export default function Product() {
     const sortValue = searchParams.get("sort")
     const pageNumber = searchParams.get("page")
     const stock = searchParams.get("stock")
-    const currentPage = Number(searchParams.get("page")) || 1; 
+    const currentPage = Number(searchParams.get("page")) || 1;
 
     const handlePaginationChange = (e, value) => {
         const searchParams = new URLSearchParams(location.search);
-            searchParams.set("page", value); 
+        searchParams.set("page", value);
         const query = searchParams.toString();
-        navigate({ search: `?${query}` }); 
+        navigate({ search: `?${query}` });
     }
 
-    const handleFilter = (e,value, sectionId) => {
+    const handleFilter = (e, value, sectionId) => {
         const searchParams = new URLSearchParams(location.search);
         let filterValues = searchParams.get(sectionId)?.split(",") || [];
 
@@ -88,7 +88,7 @@ export default function Product() {
         const [minPrice, maxPrice] = priceValue
             ? priceValue.split(" To ").map(Number)
             : [0, 10000];
-    
+
         const data = {
             category: levelThree,
             colors: colorValue || [],
@@ -101,11 +101,11 @@ export default function Product() {
             pageSize: 1, // One product per page
             stock: stock,
         };
-    
+
         dispatch(findProducts(data));
     }, [levelThree, currentPage, priceValue, colorValue, sizeValue, disccount, sortValue, stock, dispatch]);
-    
-    
+
+
 
 
     return (

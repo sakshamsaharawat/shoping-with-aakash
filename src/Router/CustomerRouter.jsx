@@ -8,10 +8,18 @@ import Order from '../cutomer/components/Order/Order';
 import OrderDetails from '../cutomer/components/Order/OrderDetails';
 import AuthModel from '../Auth/AuthModal';
 import PaymentSuccess from '../cutomer/components/Payment/PaymentSuccess';
+import Navigation from '../cutomer/components/Navigation/Navigation';
+import { ToastContainer } from 'react-toastify';
+import Footer from '../cutomer/components/Footer/Footer';
 
 const CustomerRouter = () => {
     return (
+        <div>
+         <Navigation />
+         <ToastContainer />
+         <div>
         <Routes>
+
             <Route exact path="/" element={<HomePage />} />
             <Route path="/:levelOne/:levelTwo/levelThree" element={<Product />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
@@ -24,7 +32,13 @@ const CustomerRouter = () => {
             <Route path="/login-page" element={<HomePage />} />
             <Route path='/payment/:orderId' exact element={<PaymentSuccess />} />
             {/* <Route path='/' exact element={<PaymentSuccess />} /> */}
+            
         </Routes>
+        </div>
+        <div className="mt-20">
+        <Footer />
+      </div>
+        </div>
     );
 };
 
