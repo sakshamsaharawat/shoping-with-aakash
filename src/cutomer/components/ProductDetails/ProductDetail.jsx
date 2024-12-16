@@ -121,7 +121,7 @@ export default function Example() {
                         <div className=" overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
                             <img
                                 src={products?.product?.imageUrl}
-                                alt={products.images}
+                                alt={products?.images}
                                 className="h-full w-full object-cover object-center"
                             />
                         </div>
@@ -244,7 +244,7 @@ export default function Example() {
 
                                 <div className="mt-4">
                                     <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                                        {product.highlights.map((highlight) => (
+                                        {product?.highlights.map((highlight) => (
                                             <li key={highlight} className="text-gray-400">
                                                 <span className="text-gray-600">{highlight}</span>
                                             </li>
@@ -257,7 +257,7 @@ export default function Example() {
                                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                                 <div className="mt-4 space-y-6">
-                                    <p className="text-sm text-gray-600">{product.details}</p>
+                                    <p className="text-sm text-gray-600">{product?.details}</p>
                                 </div>
                             </div>
                         </div>

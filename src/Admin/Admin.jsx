@@ -13,7 +13,6 @@ import OrdersTable from './Components/OrdersTable';
 import CustomersTable from './Components/CustomersTable';
 import AdminDashboard from './Components/AdminDashboard';
 
-
 const menu = [
     { name: "Dashboard", path: "/admin", icon: <DashboardIcon /> },
     { name: "Products", path: "/admin/products", icon: <Inventory2Icon /> },
