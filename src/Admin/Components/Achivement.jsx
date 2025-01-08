@@ -18,7 +18,7 @@ const TrophyImg = styled("img")({
 
 const Achivement = () => {
   return (
-    <Card sx={{ position: "relative", bgcolor: "#242B2E", color: "white" }}>
+    <Card sx={{ position: "relative" }}>
       <CardContent>
         <Typography variant='h6' sx={{ letterSpacing: "0.25px" }}>Shopping With Aakash</Typography>
         <Typography variant='strong'>Congratulations🥳</Typography>

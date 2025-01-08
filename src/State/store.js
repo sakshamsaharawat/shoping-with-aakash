@@ -5,13 +5,15 @@ import { customerProductReducer } from "./Product/Reducer"
 import { cartReducer } from "./Cart/Reducer"
 import { orderReducer } from "./Order/Reducer"
 import { paymentReducer } from "./Payment/Reducer"
+import { adminOrderReducer } from "./Admin/order/Reducer"
 
 const rootReducers = combineReducers({
     auth: authReducer,
     products: customerProductReducer, 
     cart:cartReducer,
     order:orderReducer,
-    payment:paymentReducer
+    payment:paymentReducer,
+    adminOrder : adminOrderReducer
 })
 
 

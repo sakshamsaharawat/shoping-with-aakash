@@ -43,7 +43,7 @@ const renederStatus = () => {
                 <Avatar variant='rounded' sx={{
                     mr: 3,
                     width: 44,
-                    height: 44,
+                    height: 45,
                     boxShadow: 3,
                     color: "white",
                     background: `${item?.color}`
@@ -62,7 +62,7 @@ const renederStatus = () => {
 
 const MonthlyOverview = () => {
     return (
-        <Card sx={{ bgcolor: "#242B2E", color: "white" }}>
+        <Card >
             <CardHeader title="Monthly Overview"
                 action={
                     <IconButton size="small" sx={{ color: "white" }}>

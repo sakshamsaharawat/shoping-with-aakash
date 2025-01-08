@@ -48,7 +48,7 @@ const ProductsTable = () => {
                 <TableCell align="left">Category</TableCell>
                 <TableCell align="left">Price</TableCell>
                 <TableCell align="left">Quantity</TableCell>
-                <TableCell align="left">Delete</TableCell>
+                <TableCell align="left">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

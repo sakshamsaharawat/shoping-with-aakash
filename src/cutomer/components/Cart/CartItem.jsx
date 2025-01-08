@@ -7,14 +7,14 @@ import { removeCartItem, updateCartItem } from '../../../State/Cart/Action';
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch()
-const handleUpdateCartItem = (num) => {
-  const data = {data: {quantity:item.quantity+num},cartItemId:item?._id}
-  dispatch(updateCartItem(data))
-}
-const handelRemoveCartItem=()=>{
-  dispatch(removeCartItem(item._id))
+  const handleUpdateCartItem = (num) => {
+    const data = { data: { quantity: item.quantity + num }, cartItemId: item?._id }
+    dispatch(updateCartItem(data))
+  }
+  const handelRemoveCartItem = () => {
+    dispatch(removeCartItem(item._id))
 
-}
+  }
 
   return (
     <div className='p-5 shadow-lg border rounded-md'>
@@ -38,7 +38,7 @@ const handelRemoveCartItem=()=>{
       </div>
       <div className='lg:flex items-center lg:space-x-10 pt-4 ' >
         <div className=' flex items-center space-x-2'>
-          <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={item?.quantity<=1}>
+          <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={item?.quantity <= 1}>
             <RemoveCircleOutlineIcon />
           </IconButton>
         </div>
