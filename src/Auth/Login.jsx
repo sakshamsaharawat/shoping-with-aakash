@@ -13,13 +13,13 @@ const Login = () => {
 
         const data = new FormData(event.currentTarget);
 
-        const userData={
-            email:data.get("email"),
+        const userData = {
+            email: data.get("email"),
             password: data.get("password")
         }
 
         dispatch(login(userData))
-        console.log("userData",userData)
+        console.log("userData", userData)
 
     }
     return (
@@ -60,15 +60,15 @@ const Login = () => {
                         <Typography>
                             if you don't have account?{' '}
                         </Typography>
-                        <Typography component="sapn" sx={{color:"rgb(145, 85, 253)", cursor: 'pointer'}} onClick={()=> navigate("/signUp")}>
-                        Register
+                        <Typography component="sapn" sx={{ color: "rgb(145, 85, 253)", cursor: 'pointer' }} onClick={() => navigate("/signUp")}>
+                            Register
 
                         </Typography>
 
                     </Grid>
                 </Grid>
             </form>
-                {/* <div className='flex flex-col items-center justify-center'>
+            {/* <div className='flex flex-col items-center justify-center'>
                     <div className='py-3 flex items-center '>
                         <p> if you don't have account ? </p>
                         <Button onClick={()=> navigate("/signUp")} className='ml-5' size="small">Register</Button>

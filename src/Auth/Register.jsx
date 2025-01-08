@@ -186,7 +186,7 @@ const Register = () => {
                                 sx={{ color: 'rgb(145, 85, 253)', cursor: 'pointer' }}
                                 onClick={() => {
                                     handleCloseMenu();
-                                    navigate("/login-page"); 
+                                    navigate("/login-page");
                                 }}
                             >
                                 Login

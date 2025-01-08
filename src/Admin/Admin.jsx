@@ -58,13 +58,13 @@ const Admin = () => {
 
     return (
         <div>
-            <div className='flex border h-[100vh] space-between'> 
+            <div className='flex h-screen space-between '>
                 <CssBaseline />
 
-                <div className='w-[15%] border-2 border-r-gray-300 h-full'>
+                <div className='w-[15%] border-2 border-r-gray-300 h-screen fixed'>
                     {drawer}
                 </div>
-                <div className='w-[85%]'>
+                <div className=' w-[85%] ml-[15%] '>
                     <Routes>
                         <Route path="/" element={<AdminDashboard />}></Route>
                         <Route path="/product/create" element={<CreateProductFrom />}></Route>
